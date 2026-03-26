@@ -1,6 +1,6 @@
 name: "WRAP Issue"
 description: "Create an issue using GitHub Copilot coding agent WRAP guidance."
-title: ""
+title: "WRAP Issue"
 labels: ["triage"]
 body:
   - type: markdown
