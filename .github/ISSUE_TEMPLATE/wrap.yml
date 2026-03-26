@@ -194,4 +194,3 @@ body:
         - P3 - Low
     validations:
       required: true
-``
