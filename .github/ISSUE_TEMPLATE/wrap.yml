@@ -1,0 +1,197 @@
+name: "WRAP Issue"
+description: "Create an issue using GitHub Copilot coding agent WRAP guidance."
+title: ""
+labels: ["triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## WRAP issue (for GitHub Copilot coding agent)
+        WRAP stands for:
+        - W – Write effective issues
+        - R – Refine your instructions
+        - A – Atomic tasks
+        - P – Pair with the coding agent
+
+        Tip: Write this as if it's for someone brand new to the codebase, include examples, and keep tasks small and reviewable. 
+
+  # W — Write effective issues
+  - type: markdown
+    attributes:
+      value: |
+        ### W — Write effective issues
+        Provide enough context for a newcomer or coding agent to succeed. Include what needs to change, where, and examples of desired outcomes.
+
+  - type: input
+    id: w_title_scope
+    attributes:
+      label: Descriptive scope for the title
+      description: Provide a short scope that makes the title specific (area + intent), so it's easy to track many agent tasks.
+      placeholder: "e.g., auth middleware: update to async/await"
+    validations:
+      required: true
+
+  - type: textarea
+    id: w_context
+    attributes:
+      label: Context and goal
+      description: Explain the problem and the goal. Assume the reader is new to the codebase.
+      placeholder: |
+        Context:
+        Goal:
+        Why this matters:
+    validations:
+      required: true
+
+  - type: textarea
+    id: w_examples
+    attributes:
+      label: Examples (recommended)
+      description: Add code snippets, expected inputs/outputs, screenshots, logs, or links to similar code. Examples improve agent outcomes.
+      placeholder: |
+        Example behavior:
+        Example code/pattern:
+        ```
+        // paste example here
+        ```
+        References/links:
+    validations:
+      required: false
+
+  - type: textarea
+    id: w_done
+    attributes:
+      label: "Definition of done (acceptance criteria)"
+      description: List measurable checks that confirm the issue is complete.
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+
+  # R — Refine your instructions
+  - type: markdown
+    attributes:
+      value: |
+        ### R — Refine your instructions
+        Clarify constraints and preferences so the agent does not guess. Include conventions, boundaries, and quality requirements.
+
+  - type: textarea
+    id: r_constraints
+    attributes:
+      label: Constraints and conventions
+      description: Include coding conventions, architectural constraints, dependencies to use or avoid, and compatibility requirements.
+      placeholder: |
+        Constraints:
+        - Follow existing patterns in ...
+        - Keep changes limited to ...
+        - Do not ...
+        Conventions:
+        - Naming:
+        - Error handling:
+        - Logging/telemetry:
+    validations:
+      required: false
+
+  - type: textarea
+    id: r_quality
+    attributes:
+      label: Quality requirements
+      description: Testing expectations, performance considerations, security/privacy requirements, and documentation updates.
+      placeholder: |
+        Tests to add/update:
+        Performance:
+        Security/privacy:
+        Docs/changelog:
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: r_checks
+    attributes:
+      label: Refinement check
+      description: Ensure the issue is unambiguous and gives the agent the details it needs.
+      options:
+        - label: I provided enough context for someone new to the codebase.
+          required: true
+        - label: I added examples or references where helpful.
+          required: false
+        - label: I described constraints and quality requirements (or confirmed none).
+          required: false
+
+  # A — Atomic tasks
+  - type: markdown
+    attributes:
+      value: |
+        ### A — Atomic tasks
+        Break the work into small steps that can be completed and reviewed incrementally.
+
+  - type: textarea
+    id: a_tasks
+    attributes:
+      label: Task breakdown
+      description: List small, ordered tasks. Prefer steps that can be validated independently.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: a_out_of_scope
+    attributes:
+      label: Out of scope
+      description: Explicitly list what should NOT be changed to keep the work atomic.
+      placeholder: |
+        Out of scope:
+        - ...
+        - ...
+    validations:
+      required: false
+
+  # P — Pair with the coding agent
+  - type: markdown
+    attributes:
+      value: |
+        ### P — Pair with the coding agent
+        If you plan to assign this to Copilot coding agent, add guidance for how it should work and what it should produce.
+
+  - type: checkboxes
+    id: p_agent
+    attributes:
+      label: Agent workflow expectations
+      description: These help set the “pairing” contract for the agent and reviewers.
+      options:
+        - label: Add or update tests to validate the change.
+          required: false
+        - label: Keep the pull request small and focused on this issue only.
+          required: false
+        - label: Explain key decisions in the PR description (what changed and why).
+          required: false
+
+  - type: textarea
+    id: p_handoff
+    attributes:
+      label: Review and handoff notes
+      description: Anything you want the agent to highlight for reviewers (risky areas, files touched, manual verification).
+      placeholder: |
+        Review focus areas:
+        Manual verification steps:
+        Risky changes:
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P0 - Urgent
+        - P1 - High
+        - P2 - Medium
+        - P3 - Low
+    validations:
+      required: true
+``
